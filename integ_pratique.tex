@@ -1,0 +1,71 @@
+\newif\ifwhole
+
+\wholetrue
+% Ajouter \wholetrue si on compile seulement ce fichier
+
+\ifwhole
+ \documentclass[a4page,10pt]{article}
+     \input{entete}
+ \begin{document}
+\input{enonce}
+\fi
+\begin{Thm}[Convergence dominée]
+Soit $(f_n)$ une suite de fonctions de $L^1 $ qui converge $\mu $-presque partout vers une application mesurable $f $ de $ $ dans $\overline{\R} $ et tel qu'il existe une fonction $g \in L^1$ telle que $\forall n \in \N, \forall x \in X, |f_n(x)| \leq g(x)$. \\
+Alors $f \in \L^1 $ et $\lim \|f_n-f \|=0$ i.e. $f_n$ converge vers $f$ dans $L^1$.
+\end{Thm}
+Dans les hypothèses de ce théorème, $\lim \int f_n=\int \lim f_n=\int f$
+\vspace{4cm}
+\begin{Thm}[de Fubini]
+Soient $(X,\Fcal,\lambda) $ et $(Y,\Gcal,\mu)$ deux espaces mesurés  $\sigma$-finis. Soit $f : X \times Y \to \overline{R}$ une application $\Fcal \otimes \Gcal$ -mesurable. \\
+1) Si $f \geq 0$ alors les applications $\varphi_y : x \mapsto \int_Y f(x,y) d\mu(y)$ et $\psi_x : y \mapsto \int_x f(x,y) d\lambda(y)$ sont mesurables sur,respectivement, $\Fcal$ et $\Gcal$ et $$\int_{X \times Y} f d(\lambda \otimes \mu)=\int_{X} \varphi_y(x) d\lambda(x)=\int_{Y} \psi_x(y) d\mu(y) $$
+2) Si $f$ est $\lambda \times \mu$-intégrable alors les applications $f(x,\cdot)$ et $f(\cdot,y)$  sont intégrables pour, respectivement, presque tout $x \in X$ et presque tout $y \in Y$. 
+Les applications $\varphi_y$ et $\psi_x$ sont bien définis (comme dans le 1)) pour, respectivement, presque tout $y$ et presque $x$ et sont intégrables.
+On a, alors, comme dans le cas précédent, $$\int_{X \times Y} f d(\lambda \otimes \mu)=\int_{X} \varphi_y(x) d\lambda(x)=\int_{Y} \psi_x(y) d\mu(y) $$
+
+
+
+
+
+\end{Thm}
+\vspace{4cm}
+\section{Théorème de continuité et de dérivation sous le signe $\int$}
+
+ Dans la suite, $a$ et $b $ sont deux réels tels que $a <b $ et $f $ désigne une application de $
+X \times [a,b] $ dans $\R $.
+%Pour tout $(_0,t_0)\in X \times   [a,b]$, on note $f (,\cdot) $ et $f (\cdot,t_0) $ les applications respectives $t \in [a,b] \mapsto f (_,t) \in \R $ et $ \in  \mapsto f(,t_0) \in \R $
+\begin{Thm}[ de continuité sous le signe $\int$ ]
+Si $f $ vérifie les trois hypothèses suivantes : \\
+1) Pour tout $t \in [a,b] $, $f (\cdot,t) \in L^1$ ; \\
+2) $\exists g \in L^1, \forall x \in X, \forall t \in [a,b],  |f(x,t)| \leq g(x)$ (hypothèse de domination) \\
+3) Pour tout $ \in X $, l'application  $f (,\cdot) $ est continue sur $[a,b] $ ;\\
+alors, l'application  $F: t \in [a,b] \mapsto F(t):=\int_X f(x,t) d\mu(x) \in \R $ est continue sur $[a,b] $.\\
+\end{Thm}
+\begin{Thm}[de dérivabilité sous le signe $\int$ ]
+Si $f $ vérifie les trois hypothèses suivantes : \\
+1) Pour tout $t \in [a,b] $, $f (\cdot,t) \in L^1$ ; \\
+2) Pour tout $(,t)\in X \times [a,b]  $, l'application  $\frac{\partial f}{\partial t}(x,t) $ est définie ;\\
+3) $\exists g \in L^1, \forall x \in X, \forall t \in [a,b],  \left|\frac{\partial f}{\partial t}(x,t)\right| \leq g(x)$ (hypothèse de domination). \\
+Alors,\\
+ 1)l'application  $F: t \in [a,b] \mapsto F(t):=\int_X f(x,t) d\mu(x) \in \R $ est dérivable sur $[a,b] $\\
+2) Pour tout $t \in ]a,b [$, $\frac{\partial f}{\partial t}(\cdot,t)\in L^1$ et $F'(t)=\int_X \frac{\partial f}{\partial t}(x,t) d\mu (x) $.
+\end{Thm}
+\begin{Thm}[Généralisation ]
+Soit $k \in \N$ et $f $ qui vérifie les trois hypothèses suivantes : \\
+1) Pour tout $t \in [a,b] $, $f (\cdot,t) \in L^1$ ; \\
+2) Pour tout $(x,t)\in X \times [a,b]  $, l'application  $\frac{\partial^k f}{\partial t^k}(x,t) $ est définie ;\\
+3) $\exists g \in L^1, \forall x \in X, \forall t \in [a,b],  \left|\frac{\partial^k f}{\partial t^k}(x,t)\right| \leq g(x)$ (hypothèse de domination). \\
+Alors,\\
+ 1)l'application  $F: t \in [a,b] \mapsto F(t):=\int_X f(x,t) d\mu(x) \in \R $ est $k$ fois dérivable sur $[a,b] $\\
+2) Pour tout $t \in ]a,b [$, $\frac{\partial^k f}{\partial t^k}(\cdot,t)\in L^1$ et $F^{(k)}(t)=\int_X \frac{\partial^k f}{\partial t^k}(x,t) d\mu (x) $.
+\end{Thm}
+
+
+
+
+
+
+
+
+\ifwhole
+ \end{document}
+\fi
