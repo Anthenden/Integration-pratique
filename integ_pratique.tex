@@ -9,25 +9,87 @@
  \begin{document}
 \input{enonce}
 \fi
+\section*{Introduction}
+Dans cette note, on va redonner les résultats de théorie de l'intégration de Lebesgue permettant de justifier les interversions des signes $\sum,\int,\frac{d}{dx},\lim$.
+\section{Théorème de convergence dominée}
+
 \begin{Thm}[Convergence dominée]
-Soit $(f_n)$ une suite de fonctions de $L^1 $ qui converge $\mu $-presque partout vers une application mesurable $f $ de $ $ dans $\overline{\R} $ et tel qu'il existe une fonction $g \in L^1$ telle que $\forall n \in \N, \forall x \in X, |f_n(x)| \leq g(x)$. \\
-Alors $f \in \L^1 $ et $\lim \|f_n-f \|=0$ i.e. $f_n$ converge vers $f$ dans $L^1$.
+Soit $(f_n)$ une suite de fonctions de $L^1 $ qui converge $\mu $-presque partout vers une application mesurable $f $ de $X$ dans $\overline{\R} $ et tel qu'il existe une fonction $g \in L^1$ telle que $\forall n \in \N, \forall x \in X, |f_n(x)| \leq g(x)$. \\
+Alors $f \in L^1 $ et $\lim \|f_n-f \|=0$ i.e. $f_n$ converge vers $f$ dans $L^1$.
 \end{Thm}
 Dans les hypothèses de ce théorème, $\lim \int f_n=\int \lim f_n=\int f$
-\vspace{4cm}
+
+Le théorème de convergence dominée nous permet d'intervertir une limite et une intégrale (resp. une série) 
+
+\begin{Ex}
+Calculons la limite de $I_n:=\int_0^n (1-x/n)^n x^m dx$ quand $n \to \infty$ et $m \in \N$. \\
+Soit $f_n : x \in \R \mapsto (1-x/n)^n x^m \mathbf{1}_{[0,n]}(x)$. On a alors $I_n=\int f_n$. \\
+Pour tout $x \in \R$, $\lim f_n=e^{-x}x^m \mathbf{1}_{\R_+}=:f(x)$. \\
+De plus, on a l'inégalité, pour tout $n$ et pour tout $x$, $|f_n(x)| \leq e^{-x} x^m \mathbf{1}_{\R_+}(x)$ . Cette dernière application étant intégrable, on en déduit, grâce au théorème de convergence dominée que $\lim I_n=\int f=\int_0^{\infty} x^me^{-x} dx=\Gamma(m+1)=m!$
+
+\end{Ex}
+
+\section{Théorème de Fubini}
+
+\begin{Def}[espace $\sigma$-finis]
+Un espace mesuré $(X,\Fcal,\lambda)$ est dit $\sigma$-finis s'il existe des ensembles de mesures finis qui recouvrent $X$.
+\end{Def}
+
+\begin{Ex}
+\begin{enumerate}
+	\item Mesure de comptage sur un ensemble dénombrable : $\N$,$\Z$
+\item Mesure de Lebesgue et plus généralement, mesure de Haar sur un groupe localement compact $\sigma$-compact : $\R,\R/\Z$ et leur produits.
+\end{enumerate}
+\end{Ex}
+
+\begin{Def}
+Soient $(X,\Fcal,\lambda) $ et $(Y,\Gcal,\mu)$ deux espaces mesurés $\sigma$-finis. 
+\begin{itemize}
+	\item La tribu produit de $\Fcal$ et $\Gcal$, noté $\Fcal \otimes \Gcal$, est définie comme étant la plus petite tribu contenant les $F \times G$ pour $F \in \Fcal$ et $G \in \Gcal$.
+	\item La mesure produit de $\lambda$ et $\mu$, noté $\lambda \otimes \mu$, est définie de la façon suivante : \\
+	Soit $Q \in \Fcal \otimes \Gcal$. \\
+	Soient $Q_x:=\{ y | (x,y) \in Q\}$ et $Q^y:=\{ x | (x,y) \in Q\}$ les sections de $Q$ suivant, respectivement, $x$ et $y$.
+	$\lambda \otimes \mu(Q):=\int_X \lambda(Q_x) d\mu(x)=\int_Y \mu(Q^y) d\lambda(y)$
+	
+\end{itemize}
+
+On peut définir ainsi le produit de plusieurs espaces mesurés.
+
+\begin{Ex}
+$\Bcal(\R^d)=\Bcal(\R) \otimes \ldots \otimes \Bcal(\R)$ \\
+$\lambda_{\R^d}=\lambda_\R \otimes \ldots \otimes \lambda_\R$
+\end{Ex}
+ 
+\end{Def}
+
 \begin{Thm}[de Fubini]
-Soient $(X,\Fcal,\lambda) $ et $(Y,\Gcal,\mu)$ deux espaces mesurés  $\sigma$-finis. Soit $f : X \times Y \to \overline{R}$ une application $\Fcal \otimes \Gcal$ -mesurable. \\
-1) Si $f \geq 0$ alors les applications $\varphi_y : x \mapsto \int_Y f(x,y) d\mu(y)$ et $\psi_x : y \mapsto \int_x f(x,y) d\lambda(y)$ sont mesurables sur,respectivement, $\Fcal$ et $\Gcal$ et $$\int_{X \times Y} f d(\lambda \otimes \mu)=\int_{X} \varphi_y(x) d\lambda(x)=\int_{Y} \psi_x(y) d\mu(y) $$
+Soient $(X,\Fcal,\lambda) $ et $(Y,\Gcal,\mu)$ deux espaces mesurés  $\sigma$-finis. Soit $f : X \times Y \to \overline{\R}$ une application $\Fcal \otimes \Gcal$ -mesurable. \\
+1) Si $f \geq 0$ alors les applications $\varphi_y : x \mapsto \int_Y f(x,y) d\mu(y)$ et $\psi_x : y \mapsto \int_X f(x,y) d\lambda(y)$ sont mesurables sur,respectivement, $\Fcal$ et $\Gcal$ et $$\int_{X \times Y} f d(\lambda \otimes \mu)=\int_{X} \varphi_y(x) d\lambda(x)=\int_{Y} \psi_x(y) d\mu(y) $$
 2) Si $f$ est $\lambda \times \mu$-intégrable alors les applications $f(x,\cdot)$ et $f(\cdot,y)$  sont intégrables pour, respectivement, presque tout $x \in X$ et presque tout $y \in Y$. 
 Les applications $\varphi_y$ et $\psi_x$ sont bien définis (comme dans le 1)) pour, respectivement, presque tout $y$ et presque $x$ et sont intégrables.
 On a, alors, comme dans le cas précédent, $$\int_{X \times Y} f d(\lambda \otimes \mu)=\int_{X} \varphi_y(x) d\lambda(x)=\int_{Y} \psi_x(y) d\mu(y) $$
 
-
-
-
-
 \end{Thm}
-\vspace{4cm}
+
+Le théorème de Fubini permet de faire les intervertions $\sum \sum,\sum \int, \int \int$
+
+\begin{Ex}
+Soit $n \in \N,n \geq 2$. Calculons $I=\int_0^1 \cdots \int_0^1 \frac{dx_1 \ldots dx_n}{1-x_1 \ldots x_n}$.\\
+$I=\int_{[0,1[^n} \sum_{p \geq 0} (x_1\ldots x_n)^p dx_1\ldots dx_n$. \\
+Comme $(x_1\ldots x_n)^p \geq 0$ sur $[0,1[^n$ alors, par le théorème de Fubini, on peut intervertir les signes somme et intégrale et donc : \\
+$I=\sum_{p \geq 0}\int_{[0,1[^n}  (x_1\ldots x_n)^p dx_1\ldots dx_n=\sum_{p \geq 0}\left(\int_{[0,1[}  x^p dx\right)^n=\sum_{p \geq 0}\frac{1}{(p+1)^n}=\zeta(n)$
+\end{Ex}
+\begin{Ex}
+Soit $(u_n)$ une suite dont la série est absolument convergente. \\
+Montrons que, pour toute permutation $\sigma$ de $\Sfrak_n$, $\sum u_{\sigma(n)}=\sum u_n$.\\
+Soit $(u_{n,p})$ la suite définie par : $u_{n,p}=u_n \delta_{n,\sigma^{-1}(p)}$.\\
+Pour utiliser le théorème de Fubini, nous devons nous assurer que $\sum_{n,p} |u_{n,p}|<\infty$.
+Pour ce faire, on peut utiliser le théorème de Fubini pour les fonctions positives : \\
+$\sum_{n,p} |u_{n,p}|=\sum_n \sum_p |u_{n,p}|=\sum_n |u_{n}|<\infty$. \\
+On en déduit, grâce au théorème de Fubini, que : \\
+ $\sum_n u_n=\sum_n \sum_p u_{n,p}=\sum_p \sum_n u_{n,p}=\sum_p u_{\sigma(p)}$ 
+\end{Ex}
+
 \section{Théorème de continuité et de dérivation sous le signe $\int$}
 
  Dans la suite, $a$ et $b $ sont deux réels tels que $a <b $ et $f $ désigne une application de $
@@ -37,13 +99,13 @@ X \times [a,b] $ dans $\R $.
 Si $f $ vérifie les trois hypothèses suivantes : \\
 1) Pour tout $t \in [a,b] $, $f (\cdot,t) \in L^1$ ; \\
 2) $\exists g \in L^1, \forall x \in X, \forall t \in [a,b],  |f(x,t)| \leq g(x)$ (hypothèse de domination) \\
-3) Pour tout $ \in X $, l'application  $f (,\cdot) $ est continue sur $[a,b] $ ;\\
+3) Pour tout $x \in X $, l'application  $f (x,\cdot) $ est continue sur $[a,b] $ ;\\
 alors, l'application  $F: t \in [a,b] \mapsto F(t):=\int_X f(x,t) d\mu(x) \in \R $ est continue sur $[a,b] $.\\
 \end{Thm}
 \begin{Thm}[de dérivabilité sous le signe $\int$ ]
 Si $f $ vérifie les trois hypothèses suivantes : \\
 1) Pour tout $t \in [a,b] $, $f (\cdot,t) \in L^1$ ; \\
-2) Pour tout $(,t)\in X \times [a,b]  $, l'application  $\frac{\partial f}{\partial t}(x,t) $ est définie ;\\
+2) Pour tout $(x,t)\in X \times [a,b]  $, l'application  $\frac{\partial f}{\partial t}(x,t) $ est définie ;\\
 3) $\exists g \in L^1, \forall x \in X, \forall t \in [a,b],  \left|\frac{\partial f}{\partial t}(x,t)\right| \leq g(x)$ (hypothèse de domination). \\
 Alors,\\
  1)l'application  $F: t \in [a,b] \mapsto F(t):=\int_X f(x,t) d\mu(x) \in \R $ est dérivable sur $[a,b] $\\
@@ -59,9 +121,17 @@ Alors,\\
 2) Pour tout $t \in ]a,b [$, $\frac{\partial^k f}{\partial t^k}(\cdot,t)\in L^1$ et $F^{(k)}(t)=\int_X \frac{\partial^k f}{\partial t^k}(x,t) d\mu (x) $.
 \end{Thm}
 
-
-
-
+\begin{Ex}
+Soit $\Gamma : t \in \R_+^* \mapsto \int_0^\infty x^{t-1}e^{-x} dx$ . \\
+$\Gamma$ est bien défini pour tout $t$ (par des arguments de croissance comparée et de comparaison aux séries de Riemann). Comme $f \geq 0$ alors $f \in L^1$. \\
+$f$ est clairement $\Ccal^\infty$.\\
+Soit $0<a<b$ deux réels et considérons la restriction de $\Gamma$ sur $[a,b]$.\\
+Soit $x>0$,$t \in ]a,b[$ et $k \in \N$\\
+$\left|\frac{\partial^k f}{\partial t^k}(x,t)\right|=|x^{t-1}ln(x)^ke^{-x}| \leq |ln(x)^ke^{-x}|x^{a-1}$. \\
+Par croissante comparée et comparaison aux séries de références, cette dernière fonction est intégrable sur $\R_+^*$.
+Par le théorème de dérivation, $\Gamma$ est $\Ccal^k$ sur $[a,b]$.
+On en conclut donc que $\Gamma$ est $\Ccal^\infty$ sur $\R_+^*$
+\end{Ex}
 
 
 
