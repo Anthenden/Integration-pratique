@@ -8,12 +8,15 @@
      \input{entete}
  \begin{document}
 \input{enonce}
+\title{Intégration pratique}
+\maketitle
 \fi
 \section*{Introduction}
 Dans cette note, on va redonner les résultats de théorie de l'intégration de Lebesgue permettant de justifier les interversions des signes $\sum,\int,\frac{d}{dx},\lim$.
 \section{Théorème de convergence dominée}
 
 \begin{Thm}[Convergence dominée]
+Soit $(X,\Fcal,\lambda) $ un espace mesuré. \\
 Soit $(f_n)$ une suite de fonctions de $L^1 $ qui converge $\mu $-presque partout vers une application mesurable $f $ de $X$ dans $\overline{\R} $ et tel qu'il existe une fonction $g \in L^1$ telle que $\forall n \in \N, \forall x \in X, |f_n(x)| \leq g(x)$. \\
 Alors $f \in L^1 $ et $\lim \|f_n-f \|=0$ i.e. $f_n$ converge vers $f$ dans $L^1$.
 \end{Thm}
@@ -32,7 +35,7 @@ De plus, on a l'inégalité, pour tout $n$ et pour tout $x$, $|f_n(x)| \leq e^{-x}
 \section{Théorème de Fubini}
 
 \begin{Def}[espace $\sigma$-finis]
-Un espace mesuré $(X,\Fcal,\lambda)$ est dit $\sigma$-finis s'il existe des ensembles de mesures finis qui recouvrent $X$.
+Un espace mesuré $(X,\Fcal,\lambda)$ est dit $\sigma$-fini s'il existe des ensembles de mesures finis qui recouvrent $X$.
 \end{Def}
 
 \begin{Ex}
@@ -75,7 +78,7 @@ Le théorème de Fubini permet de faire les intervertions $\sum \sum,\sum \int, \i
 
 \begin{Ex}
 Soit $n \in \N,n \geq 2$. Calculons $I=\int_0^1 \cdots \int_0^1 \frac{dx_1 \ldots dx_n}{1-x_1 \ldots x_n}$.\\
-$I=\int_{[0,1[^n} \sum_{p \geq 0} (x_1\ldots x_n)^p dx_1\ldots dx_n$. \\
+$I=\int_{[0,1[} \ldots \int_{[0,1[} \sum_{p \geq 0} (x_1\ldots x_n)^p dx_1\ldots dx_n$. \\
 Comme $(x_1\ldots x_n)^p \geq 0$ sur $[0,1[^n$ alors, par le théorème de Fubini, on peut intervertir les signes somme et intégrale et donc : \\
 $I=\sum_{p \geq 0}\int_{[0,1[^n}  (x_1\ldots x_n)^p dx_1\ldots dx_n=\sum_{p \geq 0}\left(\int_{[0,1[}  x^p dx\right)^n=\sum_{p \geq 0}\frac{1}{(p+1)^n}=\zeta(n)$
 \end{Ex}
@@ -92,7 +95,7 @@ On en déduit, grâce au théorème de Fubini, que : \\
 
 \section{Théorème de continuité et de dérivation sous le signe $\int$}
 
- Dans la suite, $a$ et $b $ sont deux réels tels que $a <b $ et $f $ désigne une application de $
+ Dans la suite, $(X,\Fcal,\mu)$ est un espace mesuré, $a$ et $b $ sont deux réels tels que $a <b $ et $f $ désigne une application de $
 X \times [a,b] $ dans $\R $.
 %Pour tout $(_0,t_0)\in X \times   [a,b]$, on note $f (,\cdot) $ et $f (\cdot,t_0) $ les applications respectives $t \in [a,b] \mapsto f (_,t) \in \R $ et $ \in  \mapsto f(,t_0) \in \R $
 \begin{Thm}[ de continuité sous le signe $\int$ ]
@@ -123,7 +126,7 @@ Alors,\\
 
 \begin{Ex}
 Soit $\Gamma : t \in \R_+^* \mapsto \int_0^\infty x^{t-1}e^{-x} dx$ . \\
-$\Gamma$ est bien défini pour tout $t$ (par des arguments de croissance comparée et de comparaison aux séries de Riemann). Comme $f \geq 0$ alors $f \in L^1$. \\
+$\Gamma$ est bien défini pour tout $t>0$ (par des arguments de croissance comparée et de comparaison aux séries de Riemann). Comme, de plus,$f \geq 0$ alors $f \in L^1$. \\
 $f$ est clairement $\Ccal^\infty$.\\
 Soit $0<a<b$ deux réels et considérons la restriction de $\Gamma$ sur $[a,b]$.\\
 Soit $x>0$,$t \in ]a,b[$ et $k \in \N$\\
@@ -135,6 +138,9 @@ On en conclut donc que $\Gamma$ est $\Ccal^\infty$ sur $\R_+^*$
 
 
 
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{Analyse_reelle_et_complexe}
 
 \ifwhole
  \end{document}
